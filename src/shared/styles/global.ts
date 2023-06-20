@@ -139,6 +139,7 @@ export const GlobalStyles = createGlobalStyle`
     appearance: none;
     border: none;
     background: transparent;
+    padding: 0;
   }
 
 `;
