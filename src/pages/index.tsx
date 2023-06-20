@@ -1,8 +1,54 @@
 import Head from "next/head";
+import dayjs from "dayjs";
+
 import { Home } from "./home";
 import { TopBar } from "@/shared/components/TopBar";
+import { DataProps } from "@/shared/types/DataProps";
+import { Footer } from "@/shared/components/Footer";
 
-export default function Index() {
+export async function getServerSideProps() {
+  const today = dayjs();
+  const currentDate = today.format("YYYY-MM-DD");
+
+  // Today data request
+  const reqTodayData = await fetch(
+    `https://collectionapi.metmuseum.org/public/collection/v1/objects?metadataDate=${currentDate}`
+  );
+  const todayDataResponse = await reqTodayData.json();
+  const todayDataPromisses = await todayDataResponse.objectIDs.map(
+    (id: number) =>
+      fetch(
+        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
+      )
+  );
+
+  const todayDataResponses = await Promise.all(todayDataPromisses);
+  const todayData = await Promise.all(
+    todayDataResponses.map((response) => response.json())
+  );
+
+  // Latest data request
+  const reqAllData = await fetch(
+    "https://collectionapi.metmuseum.org/public/collection/v1/search?q=latest added"
+  );
+  const allData = await reqAllData.json();
+  const latestDataPromises = await allData.objectIDs
+    .slice(0, 9)
+    .map((id: number) =>
+      fetch(
+        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
+      )
+    );
+
+  const latestDataResponses = await Promise.all(latestDataPromises);
+  const latestData = await Promise.all(
+    latestDataResponses.map((response) => response.json())
+  );
+
+  return { props: { todayData, latestData } };
+}
+
+export default function Index({ todayData, latestData }: DataProps) {
   return (
     <>
       <Head>
@@ -13,7 +59,8 @@ export default function Index() {
       </Head>
       <main>
         <TopBar />
-        <Home />
+        <Home todayData={todayData} latestData={latestData} />
+        <Footer />
       </main>
     </>
   );

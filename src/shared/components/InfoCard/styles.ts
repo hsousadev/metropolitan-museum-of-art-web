@@ -16,6 +16,18 @@ export const Container = styled.div`
   padding: 32px 24px;
   margin-bottom: 16px;
 
+  .thumb-image {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  :hover {
+    > img {
+      transition: all 0.5s;
+      transform: scale(1.1);
+    }
+  }
+
   img {
     width: 80px;
     height: 80px;

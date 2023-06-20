@@ -1,32 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
+import { HighlightCardProps } from "@/shared/types/HighlightCardProps";
 import { InfoCard } from "../InfoCard";
 
 import { Container } from "./styles";
 
-interface HightlightProps {
-  image: string;
-  title: string;
-  author: string;
-  isPublic: boolean;
-  onClick?: () => void;
-}
-
 export function HighlightCard({
-  author,
-  image,
-  isPublic,
+  primaryImageSmall,
   title,
+  artistDisplayName,
+  isPublicDomain,
   onClick,
-}: HightlightProps) {
+  country,
+}: HighlightCardProps) {
   return (
     <Container onClick={onClick}>
       <div className="content">
-        <img src={image} alt="" width={387} height={444} />
+        <img src={primaryImageSmall} alt="" width={387} height={444} />
         <InfoCard
           className="info-card"
-          author={author}
-          isPublic={isPublic}
+          author={artistDisplayName ? artistDisplayName : country}
+          isPublic={isPublicDomain}
           title={title}
+          isHighlighted
         />
       </div>
     </Container>

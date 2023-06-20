@@ -1,15 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import { Container } from "./styles";
+import { useState } from "react";
+import Image from "next/image";
 
 import { BookmarkButton } from "../BookmarkButton";
+import InfoCardDefaultIcon from "@/shared/assets/icons/info-card-default-icon.svg";
 
+import { Container } from "./styles";
 interface InfoCardProps {
   className?: string;
   image?: string;
   title: string;
-  author: string;
+  author: string | undefined;
   isPublic: boolean;
   onClick?: () => void;
+  isHighlighted?: boolean;
 }
 
 export function InfoCard({
@@ -19,10 +23,17 @@ export function InfoCard({
   image,
   className,
   onClick,
+  isHighlighted,
 }: InfoCardProps) {
+  const [errorImage, setErrorImage] = useState(false);
+
   return (
     <Container className={className} onClick={onClick}>
-      {image && <img src={image} alt="" />}{" "}
+      {image && <img onError={() => setErrorImage(true)} src={image} alt="" />}
+
+      {(errorImage || !image) && !isHighlighted && (
+        <Image src={InfoCardDefaultIcon} alt="" width={80} height={80} />
+      )}
       <div className="info">
         <h4>{title}</h4>
         <p>{author}</p>

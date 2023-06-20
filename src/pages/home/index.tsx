@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-
 import { SearchBar } from "@/shared/components/SearchBar";
 import { SectionTitle } from "@/shared/components/SectionTitle";
 import { HighlightCard } from "@/shared/components/HighlightCard";
 import { InfoCard } from "@/shared/components/InfoCard";
 
+import { DataProps } from "@/shared/types/DataProps";
+
 import { Container } from "./styles";
 
-export function Home() {
+export function Home({ todayData, latestData }: DataProps) {
   return (
     <Container>
       <div className="hero">
@@ -18,66 +19,31 @@ export function Home() {
         <SearchBar />
       </div>
 
-      <SectionTitle subtitle="Topics for you" title="Our special gallery" />
+      <SectionTitle subtitle="Recently added" title="Today highlights" />
       <div className="highlight-cards">
-        <HighlightCard
-          author="Giovanni Britto"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-        />
-        <HighlightCard
-          author="Giovanni Britto"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-        />
-        <HighlightCard
-          author="Giovanni Britto"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-        />
+        {todayData.slice(0, 3).map((item) => (
+          <HighlightCard
+            key={item.objectID}
+            artistDisplayName={item.artistDisplayName}
+            primaryImageSmall={item.primaryImageSmall}
+            isPublicDomain={item.isPublicDomain}
+            title={item.title}
+            country={item.country}
+          />
+        ))}
       </div>
 
-      <SectionTitle subtitle="Here some more" title="Other works for you" />
+      <SectionTitle subtitle="Latest Added" title="Other recently works for you" />
       <div className="other-works-list">
-        <InfoCard
-          author="Giovanni Britto"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-        />
-        <InfoCard
-          author="Giovanni Britto"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-        />
-        <InfoCard
-          author="Giovanni Britto"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-        />
-        <InfoCard
-          author="Giovanni Britto"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-        />
-        <InfoCard
-          author="Giovanni Britto"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-        />
-        <InfoCard
-          author="Giovanni Britto"
-          isPublic
-          title="Charles V, bust length, holding a sword, facing right"
-          image="https://images.metmuseum.org/CRDImages/dp/web-large/DP-19387-001.jpg"
-        />
+        {latestData.map((item) => (
+          <InfoCard
+            key={item.objectID}
+            author={item.artistDisplayName}
+            image={item.primaryImageSmall}
+            isPublic={item.isPublicDomain}
+            title={item.title}
+          />
+        ))}
       </div>
     </Container>
   );

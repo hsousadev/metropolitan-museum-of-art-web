@@ -13,7 +13,7 @@ export function TopBar() {
   const isHome = router.pathname === "/";
 
   return (
-    <Container>
+    <Container id="top">
       <Image src={MuseumLogo} alt="" height={64} width={204} />
 
       <div className="options">
