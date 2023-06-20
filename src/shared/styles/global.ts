@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    transition: all 0.4s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     display: flex;
     align-items: center;
@@ -99,8 +99,8 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
-  h1, h2, h3, h4, p {
-    transition: all 0.4s ease-in-out;
+  h1, h2, h3, h4, p, strong {
+    transition: all 0.2s ease-in-out;
 
     margin: 0;
     font-family: "Inter", sans-serif;

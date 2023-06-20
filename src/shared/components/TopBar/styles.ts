@@ -13,7 +13,7 @@ export const Container = styled.div`
     justify-content: space-between;
 
     button {
-      transition: all 0.4s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
       display: flex;
       align-items: center;

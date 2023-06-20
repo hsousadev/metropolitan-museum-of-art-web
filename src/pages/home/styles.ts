@@ -8,14 +8,28 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  h1 {
-    font-size: 64px;
-    text-align: center;
-    width: 648px;
-    margin-bottom: 96px;
+  .hero {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 128px;
 
-    strong {
-      color: var(--Orange);
+    h1 {
+      font-size: 64px;
+      text-align: center;
+      width: 648px;
+      margin-bottom: 96px;
+
+      strong {
+        color: var(--Orange);
+      }
     }
+  }
+
+  .highlight-cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 128px;
   }
 `;
