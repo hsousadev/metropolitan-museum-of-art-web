@@ -1,6 +1,8 @@
 import Head from "next/head";
+import { Home } from "./home";
+import { TopBar } from "@/shared/components/TopBar";
 
-export default function Home() {
+export default function Index() {
   return (
     <>
       <Head>
@@ -10,7 +12,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main>
-        <h1>Hello World</h1>
+        <TopBar />
+        <Home />
       </main>
     </>
   );
