@@ -14,6 +14,14 @@ export const Container = styled.div`
   border-radius: 13.1583px;
 
   padding: 32px 24px;
+  margin-bottom: 16px;
+
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    object-fit: cover;
+  }
 
   .info {
     width: 220px;

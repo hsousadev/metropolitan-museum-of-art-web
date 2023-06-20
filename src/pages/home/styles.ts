@@ -25,11 +25,19 @@ export const Container = styled.div`
     }
   }
 
-  .highlight-cards {
+  .highlight-cards,
+  .other-works-list {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+  }
+
+  .highlight-cards {
     margin-bottom: 128px;
+  }
+
+  .other-works-list {
+    flex-wrap: wrap;
   }
 `;
