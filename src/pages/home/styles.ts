@@ -35,7 +35,8 @@ export const Container = styled.div`
     width: 100%;
   }
 
-  .highlight-cards, .searched-list {
+  .highlight-cards,
+  .searched-list {
     margin-bottom: 128px;
   }
 
@@ -74,3 +75,5 @@ export const Container = styled.div`
     }
   }
 `;
+
+export default Container;

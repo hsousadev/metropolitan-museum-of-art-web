@@ -10,7 +10,7 @@ import { Context } from "..";
 
 import { Container } from "./styles";
 
-export function Home({ data }: DataProps) {
+export default function Home({ data }: DataProps) {
   const { dataSearched } = useContext(Context);
 
   return (
@@ -50,8 +50,8 @@ export function Home({ data }: DataProps) {
           <SectionTitle subtitle="Recently added" title="Highlights" />
           <div className="highlight-cards">
             {data
-              .slice(0, 3)
-              .map(
+              ?.slice(0, 3)
+              ?.map(
                 (item, index) =>
                   item.primaryImageSmall && (
                     <HighlightCard
@@ -73,8 +73,8 @@ export function Home({ data }: DataProps) {
           />
           <div className="other-works-list">
             {data
-              .slice(3)
-              .map(
+              ?.slice(3)
+              ?.map(
                 (item, index) =>
                   item.primaryImageSmall && (
                     <InfoCard

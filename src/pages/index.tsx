@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { Home } from "./home";
+import Home from "./home";
 import { TopBar } from "@/shared/components/TopBar";
 import { DataProps } from "@/shared/types/DataProps";
 import { Footer } from "@/shared/components/Footer";
@@ -36,10 +36,10 @@ export async function getServerSideProps() {
     latestDataResponses.map((response) => response.json())
   );
 
-  return { props: {  data } };
+  return { props: { data } };
 }
 
-export default function Index({  data }: DataProps) {
+export default function Index({ data }: DataProps) {
   const [dataSearched, setDataSearched] = useState<WorkProps[]>([]);
 
   return (
