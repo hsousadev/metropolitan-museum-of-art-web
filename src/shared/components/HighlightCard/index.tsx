@@ -36,6 +36,7 @@ export function HighlightCard({
           isPublic={isPublicDomain}
           title={title}
           isHighlighted
+          image={primaryImageSmall}
         />
       </div>
     </Container>

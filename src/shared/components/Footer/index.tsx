@@ -23,7 +23,16 @@ export function Footer() {
           </div>
         </div>
         <div className="copyrights">
-          <h4>Copyright © 2023 </h4>
+          <h4>
+            © 2023 Data from
+            <a
+              href="https://metmuseum.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Metropolitan Museum of Art Collection API
+            </a>
+          </h4>
           <h4>
             <Image alt="" width={24} height={24} src={Code} />
             Desenvolvido por{" "}

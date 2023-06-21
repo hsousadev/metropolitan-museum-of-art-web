@@ -26,37 +26,45 @@ export function Home({ data }: DataProps) {
       {dataSearched.length ? (
         <>
           <SectionTitle
-            subtitle="Search list"
-            title={`${dataSearched.length} results found`}
+            subtitle="Results on display at the museum"
+            title="Works founded"
           />
           <div className="searched-list">
-            {dataSearched.map((item, index) => (
-              <InfoCard
-                id={item.objectID}
-                key={index}
-                author={item.artistDisplayName}
-                image={item.primaryImageSmall}
-                isPublic={item.isPublicDomain}
-                title={item.title}
-              />
-            ))}
+            {dataSearched.map(
+              (item, index) =>
+                item.title && (
+                  <InfoCard
+                    id={item.objectID}
+                    key={index}
+                    author={item.artistDisplayName}
+                    image={item.primaryImageSmall}
+                    isPublic={item.isPublicDomain}
+                    title={item.title}
+                  />
+                )
+            )}
           </div>
         </>
       ) : (
         <>
           <SectionTitle subtitle="Recently added" title="Highlights" />
           <div className="highlight-cards">
-            {data.slice(0, 3).map((item, index) => (
-              <HighlightCard
-                objectID={item.objectID}
-                key={index}
-                artistDisplayName={item.artistDisplayName}
-                primaryImageSmall={item.primaryImageSmall}
-                isPublicDomain={item.isPublicDomain}
-                title={item.title}
-                country={item.country}
-              />
-            ))}
+            {data
+              .slice(0, 3)
+              .map(
+                (item, index) =>
+                  item.primaryImageSmall && (
+                    <HighlightCard
+                      objectID={item.objectID}
+                      key={index}
+                      artistDisplayName={item.artistDisplayName}
+                      primaryImageSmall={item.primaryImageSmall}
+                      isPublicDomain={item.isPublicDomain}
+                      title={item.title}
+                      country={item.country}
+                    />
+                  )
+              )}
           </div>
 
           <SectionTitle
@@ -64,16 +72,21 @@ export function Home({ data }: DataProps) {
             title="Other recently works for you"
           />
           <div className="other-works-list">
-            {data.slice(3).map((item, index) => (
-              <InfoCard
-                id={item.objectID}
-                key={index}
-                author={item.artistDisplayName}
-                image={item.primaryImageSmall}
-                isPublic={item.isPublicDomain}
-                title={item.title}
-              />
-            ))}
+            {data
+              .slice(3)
+              .map(
+                (item, index) =>
+                  item.primaryImageSmall && (
+                    <InfoCard
+                      id={item.objectID}
+                      key={index}
+                      author={item.artistDisplayName}
+                      image={item.primaryImageSmall}
+                      isPublic={item.isPublicDomain}
+                      title={item.title}
+                    />
+                  )
+              )}
           </div>
         </>
       )}

@@ -6,7 +6,6 @@ import { FileImage } from "lucide-react";
 
 import { TopBar } from "@/shared/components/TopBar";
 import { Footer } from "@/shared/components/Footer";
-import { BookmarkButton } from "@/shared/components/BookmarkButton";
 
 import { Container } from "./styles";
 import { WorkProps } from "@/shared/types/WorkProps";

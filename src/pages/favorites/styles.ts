@@ -37,4 +37,20 @@ export const Container = styled.div`
     flex-wrap: wrap;
     column-gap: 6px;
   }
+
+  @media (max-width: 540px) {
+    .hero {
+      margin-bottom: 48px;
+      margin-top: 64px;
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 48px;
+      }
+    }
+
+    .favorite-list {
+      justify-content: center;
+    }
+  }
 `;

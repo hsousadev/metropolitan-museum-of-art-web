@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Cookies from "js-cookie";
 
 import InfoCardDefaultIcon from "@/shared/assets/icons/info-card-default-icon.svg";
 
@@ -11,16 +10,7 @@ import { BookmarkButton } from "../BookmarkButton";
 import { RemoveMarkButton } from "../RemoveMarkButton";
 
 import { Container } from "./styles";
-interface InfoCardProps {
-  className?: string;
-  image?: string;
-  title: string;
-  author: string | undefined;
-  isPublic: boolean;
-  onClick?: () => void;
-  isHighlighted?: boolean;
-  id: number;
-}
+import { InfoCardProps } from "@/shared/types/InfoCardProps";
 
 export function InfoCard({
   id,
@@ -31,12 +21,17 @@ export function InfoCard({
   className,
   isHighlighted,
 }: InfoCardProps) {
-  const storedFavorites = Cookies.get("favoriteIDs") || "";
-
   const router = useRouter();
   const [errorImage, setErrorImage] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
 
-  const [isFavorited, setIsFavorited] = useState();
+  const object = {
+    id,
+    author,
+    isPublic,
+    title,
+    image,
+  };
 
   function setCookie(name: string, value: string) {
     document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
@@ -47,22 +42,56 @@ export function InfoCard({
     router.push("/work");
   }
 
+  function handleAddFavorite() {
+    setIsFavorited(true);
+
+    const storedFavorites = localStorage.getItem("favoriteList");
+    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+
+    const newFavorites = [...parsedFavorites, object];
+
+    localStorage.setItem("favoriteList", JSON.stringify(newFavorites));
+  }
+
+  function handleRemoveFavorite() {
+    setIsFavorited(false);
+
+    const storedFavorites = localStorage.getItem("favoriteList");
+    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+
+    const updatedFavorites = parsedFavorites.filter((favorite: InfoCardProps) => {
+      return (
+        favorite.id !== object.id ||
+        favorite.author !== object.author ||
+        favorite.isPublic !== object.isPublic ||
+        favorite.title !== object.title ||
+        favorite.image !== object.image
+      );
+    });
+
+    localStorage.setItem("favoriteList", JSON.stringify(updatedFavorites));
+  }
+
   useEffect(() => {
-    let favorites = [];
-    if (storedFavorites !== "") {
-      favorites = JSON.parse(storedFavorites);
+    const storedFavorites = localStorage.getItem("favoriteList");
+    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+
+    if (
+      parsedFavorites.some(
+        (item: InfoCardProps) => JSON.stringify(item) === JSON.stringify(object)
+      )
+    ) {
+      setIsFavorited(true);
     }
-
-    const initialFavoriteValue = favorites.includes(id);
-
-    setIsFavorited(initialFavoriteValue);
-  }, []);
+  }, [isFavorited]);
 
   return (
     <Container className={className}>
-      {image && <img onError={() => setErrorImage(true)} src={image} alt="" />}
+      {!isHighlighted && !errorImage && (
+        <img onError={() => setErrorImage(true)} src={image} alt="" />
+      )}
 
-      {(errorImage || !image) && !isHighlighted && (
+      {errorImage && !isHighlighted && (
         <Image src={InfoCardDefaultIcon} alt="" width={80} height={80} />
       )}
       <div className="info" onClick={handleClick}>
@@ -73,17 +102,9 @@ export function InfoCard({
       </div>
 
       {isFavorited ? (
-        <RemoveMarkButton
-          isFavorite={isFavorited}
-          setIsFavorite={setIsFavorited}
-          id={id}
-        />
+        <RemoveMarkButton onClick={() => handleRemoveFavorite()} />
       ) : (
-        <BookmarkButton
-          isFavorite={isFavorited}
-          setIsFavorite={setIsFavorited}
-          id={id}
-        />
+        <BookmarkButton onClick={() => handleAddFavorite()} />
       )}
     </Container>
   );

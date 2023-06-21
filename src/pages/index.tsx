@@ -24,7 +24,7 @@ export async function getServerSideProps() {
   );
   const allData = await reqAllData.json();
   const latestDataPromises = await allData.objectIDs
-    .slice(0, 12)
+    .slice(0, 21)
     .map((id: number) =>
       fetch(
         `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
