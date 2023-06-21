@@ -11,6 +11,7 @@ import { Container } from "./styles";
 export function TopBar() {
   const router = useRouter();
   const isHome = router.pathname === "/";
+  const isFavorites = router.pathname === "/favorites";
 
   return (
     <Container id="top">
@@ -23,10 +24,12 @@ export function TopBar() {
             <Home size={32} color={`var(--Orange)`} />
           </button>
         )}
-        <button>
-          <h4>Your favorites</h4>
-          <Bookmark size={32} color={`var(--Orange)`} />
-        </button>
+        {!isFavorites && (
+          <button onClick={() => router.push("/favorites")}>
+            <h4>Your favorites</h4>
+            <Bookmark size={32} color={`var(--Orange)`} />
+          </button>
+        )}
       </div>
     </Container>
   );

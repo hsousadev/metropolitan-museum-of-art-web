@@ -4,25 +4,18 @@ import { Bookmark } from "lucide-react";
 
 import { Container } from "./styles";
 
-interface BookmarkButtonProps {
+interface RemoveMarkButtonProps {
   id: number;
+  isFavorite: boolean;
   setIsFavorite: Dispatch<SetStateAction<any>>;
-  isFavorite: any;
 }
 
-export function BookmarkButton({
+export function RemoveMarkButton({
   id,
   isFavorite,
   setIsFavorite,
-}: BookmarkButtonProps) {
+}: RemoveMarkButtonProps) {
   const [cookieArray, setCookieArray] = useState<number[]>([]);
-
-  const addStringToCookieArray = (newString: number) => {
-    const updatedArray = [...cookieArray, newString];
-    setCookieArray(updatedArray);
-    Cookies.set("favoriteIDs", JSON.stringify(updatedArray));
-    setIsFavorite(!isFavorite);
-  };
 
   useEffect(() => {
     const storedCookie = Cookies.get("favoriteIDs");
@@ -31,8 +24,14 @@ export function BookmarkButton({
     }
   }, []);
 
+  const removeStringFromCookieArray = (index: number) => {
+    const updatedArray = cookieArray.filter((value) => value !== index);
+    Cookies.set("favoriteIDs", JSON.stringify(updatedArray));
+    setIsFavorite(!isFavorite);
+  };
+
   return (
-    <Container onClick={() => addStringToCookieArray(id)}>
+    <Container onClick={() => removeStringFromCookieArray(id)}>
       <div className="content">
         <Bookmark size={32} color={`var(--Orange)`} />
       </div>

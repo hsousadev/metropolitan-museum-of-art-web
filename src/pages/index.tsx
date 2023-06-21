@@ -32,14 +32,14 @@ export async function getServerSideProps() {
     );
 
   const latestDataResponses = await Promise.all(latestDataPromises);
-  const latestData = await Promise.all(
+  const data = await Promise.all(
     latestDataResponses.map((response) => response.json())
   );
 
-  return { props: {  latestData } };
+  return { props: {  data } };
 }
 
-export default function Index({  latestData }: DataProps) {
+export default function Index({  data }: DataProps) {
   const [dataSearched, setDataSearched] = useState<WorkProps[]>([]);
 
   return (
@@ -52,7 +52,7 @@ export default function Index({  latestData }: DataProps) {
       </Head>
       <main>
         <TopBar />
-        <Home latestData={latestData} />
+        <Home data={data} />
         <Footer />
       </main>
     </Context.Provider>

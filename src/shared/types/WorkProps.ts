@@ -1,5 +1,5 @@
 export interface WorkProps {
-  objectID: string;
+  objectID: number;
   primaryImageSmall: string;
   title: string;
   artistDisplayName: string;

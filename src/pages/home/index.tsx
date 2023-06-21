@@ -10,7 +10,7 @@ import { Context } from "..";
 
 import { Container } from "./styles";
 
-export function Home({ latestData }: DataProps) {
+export function Home({ data }: DataProps) {
   const { dataSearched } = useContext(Context);
 
   return (
@@ -46,7 +46,7 @@ export function Home({ latestData }: DataProps) {
         <>
           <SectionTitle subtitle="Recently added" title="Highlights" />
           <div className="highlight-cards">
-            {latestData.slice(0, 3).map((item, index) => (
+            {data.slice(0, 3).map((item, index) => (
               <HighlightCard
                 objectID={item.objectID}
                 key={index}
@@ -64,7 +64,7 @@ export function Home({ latestData }: DataProps) {
             title="Other recently works for you"
           />
           <div className="other-works-list">
-            {latestData.slice(3).map((item, index) => (
+            {data.slice(3).map((item, index) => (
               <InfoCard
                 id={item.objectID}
                 key={index}

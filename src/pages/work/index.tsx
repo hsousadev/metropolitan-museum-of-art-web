@@ -40,7 +40,7 @@ export default function Work({ data }: WorkPageProps) {
             alt=""
           />
         </div>
-        <BookmarkButton />
+        {/* <BookmarkButton /> */}
 
         <h2>{data?.title}</h2>
         <button onClick={() => window.open(data?.artistWikidata_URL)}>

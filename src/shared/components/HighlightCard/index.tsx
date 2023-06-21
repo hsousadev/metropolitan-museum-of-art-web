@@ -14,22 +14,21 @@ export function HighlightCard({
   isPublicDomain,
   country,
 }: WorkProps) {
-
-  const router = useRouter()
+  const router = useRouter();
 
   function setCookie(name: string, value: string) {
     document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
   }
 
   function handleClick() {
-    setCookie("workID", objectID);
+    setCookie("workID", objectID.toString());
     router.push("/work");
   }
 
   return (
-    <Container onClick={handleClick}>
+    <Container>
       <div className="content">
-        <img src={primaryImageSmall} alt="" />
+        <img src={primaryImageSmall} alt="" onClick={handleClick} />
         <InfoCard
           id={objectID}
           className="info-card"
