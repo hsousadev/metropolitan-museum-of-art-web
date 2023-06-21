@@ -27,19 +27,26 @@ export const Container = styled.div`
   }
 
   .highlight-cards,
-  .other-works-list {
+  .other-works-list,
+  .searched-list {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
   }
 
-  .highlight-cards {
+  .highlight-cards, .searched-list {
     margin-bottom: 128px;
   }
 
-  .other-works-list {
+  .other-works-list,
+  .searched-list {
     flex-wrap: wrap;
+  }
+
+  .searched-list {
+    justify-content: flex-start;
+    column-gap: 6px;
   }
 
   @media (max-width: 1232px) {
