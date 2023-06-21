@@ -11,6 +11,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
 
     button {
       transition: all 0.2s ease-in-out;
@@ -21,5 +22,10 @@ export const Container = styled.div`
 
       gap: 4px;
     }
+  }
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    gap: 32px;
   }
 `;

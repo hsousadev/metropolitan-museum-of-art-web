@@ -16,7 +16,8 @@ export const Container = styled.div`
     h1 {
       font-size: 64px;
       text-align: center;
-      width: 648px;
+      max-width: 648px;
+      width: 100%;
       margin-bottom: 96px;
 
       strong {
@@ -39,5 +40,30 @@ export const Container = styled.div`
 
   .other-works-list {
     flex-wrap: wrap;
+  }
+
+  @media (max-width: 1232px) {
+    .highlight-cards {
+      overflow-x: scroll;
+      gap: 32px;
+    }
+
+    .other-works-list {
+      justify-content: center;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    margin-top: 64px;
+
+    .hero {
+      margin-bottom: 48px;
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 48px;
+      }
+    }
   }
 `;

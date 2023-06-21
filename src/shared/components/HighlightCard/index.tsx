@@ -15,7 +15,7 @@ export function HighlightCard({
   return (
     <Container onClick={onClick}>
       <div className="content">
-        <img src={primaryImageSmall} alt="" width={387} height={444} />
+        <img src={primaryImageSmall} alt=""  />
         <InfoCard
           className="info-card"
           author={artistDisplayName ? artistDisplayName : country}

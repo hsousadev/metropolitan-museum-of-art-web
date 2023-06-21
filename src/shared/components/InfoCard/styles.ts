@@ -64,4 +64,9 @@ export const Container = styled.div`
       text-decoration: underline;
     }
   }
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    gap: 16px;
+  }
 `;

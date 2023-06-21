@@ -1,6 +1,45 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
+
+  /* Track */
+    ::-webkit-scrollbar {
+    width: 10px; /* Width of the entire scrollbar */
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(224, 164, 73, 0.3); /* Color of the scrollbar handle */
+    border-radius: 5px; /* Rounded corners */
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--Orange); /* Color on hover */
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #D9D9D9; /* Color of the track */
+  }
+
+  /* Track on hover */
+  ::-webkit-scrollbar-track:hover {
+    background: #D9D9D9; /* Color on hover */
+  }
+
+  &:-internal-autofill-selected {
+    background-color: transparent !important;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--White) !important;
+  }
+
   :root {
     --Max-content-width: 1286px;
 
@@ -95,8 +134,8 @@ export const GlobalStyles = createGlobalStyle`
     max-width: var(--Max-content-width);
     width: 100%;
     background: var(--White) !important;
-    padding: 0 40px;
     margin: 0;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, p, strong {

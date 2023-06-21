@@ -10,7 +10,6 @@ export const Container = styled.div`
   border-radius: 16px;
 
   max-width: 762px;
-  width: 100%;
 
   input {
     appearance: none;

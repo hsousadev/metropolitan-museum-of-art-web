@@ -13,6 +13,8 @@ export const Container = styled.div`
       cursor: pointer;
       object-fit: cover;
       border-radius: 16px;
+      width: 387px;
+      height: 444px;
     }
 
     .info-card {
@@ -25,5 +27,24 @@ export const Container = styled.div`
     .info-card {
       margin-top: -72px;
     }
+  }
+
+  @media (max-width: 540px) {
+    .content {
+      img {
+        width: 220px;
+        height: 250px;
+      }
+
+      .info-card {
+        margin-top: -24px;
+      }
+    }
+
+    .content:hover {
+    .info-card {
+      margin-top: -48px;
+    }
+  }
   }
 `;
