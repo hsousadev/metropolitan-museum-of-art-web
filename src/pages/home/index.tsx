@@ -32,6 +32,7 @@ export function Home({ latestData }: DataProps) {
           <div className="searched-list">
             {dataSearched.map((item, index) => (
               <InfoCard
+                id={item.objectID}
                 key={index}
                 author={item.artistDisplayName}
                 image={item.primaryImageSmall}
@@ -47,6 +48,7 @@ export function Home({ latestData }: DataProps) {
           <div className="highlight-cards">
             {latestData.slice(0, 3).map((item, index) => (
               <HighlightCard
+                objectID={item.objectID}
                 key={index}
                 artistDisplayName={item.artistDisplayName}
                 primaryImageSmall={item.primaryImageSmall}
@@ -64,6 +66,7 @@ export function Home({ latestData }: DataProps) {
           <div className="other-works-list">
             {latestData.slice(3).map((item, index) => (
               <InfoCard
+                id={item.objectID}
                 key={index}
                 author={item.artistDisplayName}
                 image={item.primaryImageSmall}

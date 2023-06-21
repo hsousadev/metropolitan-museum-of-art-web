@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: space-between;
 
   margin-top: 40px;
+  width: 100%;
 
   .options {
     display: flex;

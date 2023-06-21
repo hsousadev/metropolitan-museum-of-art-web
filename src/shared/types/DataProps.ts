@@ -1,5 +1,5 @@
-import { HighlightCardProps } from "./HighlightCardProps";
+import { WorkProps } from "./WorkProps";
 
 export interface DataProps {
-  latestData: HighlightCardProps[];
+  latestData: WorkProps[];
 }

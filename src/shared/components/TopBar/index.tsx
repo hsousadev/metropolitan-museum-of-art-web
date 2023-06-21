@@ -18,7 +18,7 @@ export function TopBar() {
 
       <div className="options">
         {!isHome && (
-          <button>
+          <button onClick={() => router.push("/")}>
             <h4>Home</h4>
             <Home size={32} color={`var(--Orange)`} />
           </button>

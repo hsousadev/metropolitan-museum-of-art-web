@@ -5,11 +5,11 @@ import { TopBar } from "@/shared/components/TopBar";
 import { DataProps } from "@/shared/types/DataProps";
 import { Footer } from "@/shared/components/Footer";
 import { Dispatch, SetStateAction, createContext, useState } from "react";
-import { HighlightCardProps } from "@/shared/types/HighlightCardProps";
+import { WorkProps } from "@/shared/types/WorkProps";
 
 interface ContextProps {
-  dataSearched: HighlightCardProps[];
-  setDataSearched: Dispatch<SetStateAction<HighlightCardProps[]>>;
+  dataSearched: WorkProps[];
+  setDataSearched: Dispatch<SetStateAction<WorkProps[]>>;
 }
 
 export const Context = createContext<ContextProps>({
@@ -18,7 +18,6 @@ export const Context = createContext<ContextProps>({
 });
 
 export async function getServerSideProps() {
-
   // Latest data request
   const reqAllData = await fetch(
     "https://collectionapi.metmuseum.org/public/collection/v1/search?q=latest added"
@@ -41,7 +40,7 @@ export async function getServerSideProps() {
 }
 
 export default function Index({  latestData }: DataProps) {
-  const [dataSearched, setDataSearched] = useState<HighlightCardProps[]>([]);
+  const [dataSearched, setDataSearched] = useState<WorkProps[]>([]);
 
   return (
     <Context.Provider value={{ dataSearched, setDataSearched }}>

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { BookmarkButton } from "../BookmarkButton";
@@ -14,21 +15,32 @@ interface InfoCardProps {
   isPublic: boolean;
   onClick?: () => void;
   isHighlighted?: boolean;
+  id: string;
 }
 
 export function InfoCard({
+  id,
   author,
   isPublic,
   title,
   image,
   className,
-  onClick,
   isHighlighted,
 }: InfoCardProps) {
+  const router = useRouter();
   const [errorImage, setErrorImage] = useState(false);
 
+  function setCookie(name: string, value: string) {
+    document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
+  }
+
+  function handleClick() {
+    setCookie("workID", id);
+    router.push("/work");
+  }
+
   return (
-    <Container className={className} onClick={onClick}>
+    <Container className={className} onClick={handleClick}>
       {image && <img onError={() => setErrorImage(true)} src={image} alt="" />}
 
       {(errorImage || !image) && !isHighlighted && (
